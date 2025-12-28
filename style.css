@@ -8,9 +8,9 @@
 body {
   background: #fff0f0;
   color: #2b0000;
+  overflow-x: hidden;
 }
 
-/* Header */
 header {
   background: linear-gradient(135deg, #c8102e, #8b0000);
   padding: 15px 30px;
@@ -24,18 +24,35 @@ header img {
   width: 55px;
 }
 
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 nav a {
   color: white;
   margin-left: 20px;
   text-decoration: none;
   font-weight: 600;
+  position: relative;
 }
 
-nav a:hover {
-  border-bottom: 2px solid white;
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
 }
 
-/* Hero Section */
+nav a:hover::after {
+  width: 100%;
+}
+
 .hero {
   background: linear-gradient(rgba(200,16,46,0.7), rgba(0,0,0,0.7)), url("../images/banner.jpg") center/cover no-repeat;
   height: 320px;
@@ -45,6 +62,7 @@ nav a:hover {
   color: white;
   text-align: center;
   flex-direction: column;
+  padding: 20px;
 }
 
 .hero h1 {
@@ -52,10 +70,10 @@ nav a:hover {
   letter-spacing: 2px;
 }
 
-/* Section Headings */
 section {
   padding: 40px 20px;
 }
+
 section h2 {
   text-align: center;
   color: #c8102e;
@@ -63,17 +81,17 @@ section h2 {
   font-size: 28px;
 }
 
-/* Cups Section */
 .cups img {
   display: block;
-  max-width: 90%;
+  max-width: 100%;
+  height: auto;
   margin: auto;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   animation: fadeIn 2s;
+  will-change: opacity;
 }
 
-/* Squad Section */
 .squad {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -86,7 +104,7 @@ section h2 {
   overflow: hidden;
   text-align: center;
   box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-  transition: transform 0.3s;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
 }
 
 .player img {
@@ -106,7 +124,10 @@ section h2 {
   color: white;
 }
 
-/* Shop Section */
+.player:hover p {
+  color: white;
+}
+
 .shop {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -136,7 +157,6 @@ section h2 {
   transform: scale(1.05);
 }
 
-/* Contact Form */
 form {
   max-width: 400px;
   margin: 20px auto;
@@ -172,7 +192,6 @@ form button:hover {
   background: #8b0000;
 }
 
-/* Footer */
 footer {
   background: #8b0000;
   color: white;
@@ -181,15 +200,11 @@ footer {
   margin-top: 40px;
 }
 
-/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* MEDIA QUERIES FOR RESPONSIVENESS */
-
-/* Tablets */
 @media (max-width: 1024px) {
   .hero h1 {
     font-size: 30px;
@@ -202,19 +217,23 @@ footer {
   }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   header {
     flex-direction: column;
     text-align: center;
   }
 
-  nav {
-    margin-top: 10px;
+  nav a {
+    margin: 6px 10px;
+    font-size: 14px;
+  }
+
+  .hero {
+    height: 220px;
   }
 
   .hero h1 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .squad {
@@ -225,12 +244,20 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .player img, .jersey img {
+  .player img,
+  .jersey img {
     height: auto;
   }
 
   form {
     width: 90%;
     padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
