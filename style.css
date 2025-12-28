@@ -35,26 +35,14 @@ nav a {
   margin-left: 20px;
   text-decoration: none;
   font-weight: 600;
-  position: relative;
 }
 
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: white;
-  transition: width 0.3s;
-}
-
-nav a:hover::after {
-  width: 100%;
+nav a:hover {
+  border-bottom: 2px solid white;
 }
 
 .hero {
-  background: linear-gradient(rgba(200,16,46,0.7), rgba(0,0,0,0.7)), url("../images/banner.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(200,16,46,0.7), rgba(0,0,0,0.7)), url("images/banner.jpg") center/cover no-repeat;
   height: 320px;
   display: flex;
   align-items: center;
@@ -89,7 +77,6 @@ section h2 {
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   animation: fadeIn 2s;
-  will-change: opacity;
 }
 
 .squad {
@@ -121,10 +108,6 @@ section h2 {
 .player:hover {
   transform: translateY(-8px);
   background: #c8102e;
-  color: white;
-}
-
-.player:hover p {
   color: white;
 }
 
@@ -223,6 +206,10 @@ footer {
     text-align: center;
   }
 
+  nav {
+    margin-top: 10px;
+  }
+
   nav a {
     margin: 6px 10px;
     font-size: 14px;
@@ -252,12 +239,5 @@ footer {
   form {
     width: 90%;
     padding: 20px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
   }
 }
